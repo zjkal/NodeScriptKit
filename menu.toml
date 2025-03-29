@@ -1,0 +1,96 @@
+title = "NodeScriptKit - 脚本工具集合"
+splash = """
+
+███╗   ██╗ ██████╗ ██████╗ ███████╗███████╗ ██████╗██████╗ ██╗██████╗ ████████╗██╗  ██╗██╗████████╗
+████╗  ██║██╔═══██╗██╔══██╗██╔════╝██╔════╝██╔════╝██╔══██╗██║██╔══██╗╚══██╔══╝██║ ██╔╝██║╚══██╔══╝
+██╔██╗ ██║██║   ██║██║  ██║█████╗  ███████╗██║     ██████╔╝██║██████╔╝   ██║   █████╔╝ ██║   ██║   
+██║╚██╗██║██║   ██║██║  ██║██╔══╝  ╚════██║██║     ██╔══██╗██║██╔═══╝    ██║   ██╔═██╗ ██║   ██║   
+██║ ╚████║╚██████╔╝██████╔╝███████╗███████║╚██████╗██║  ██║██║██║        ██║   ██║  ██╗██║   ██║   
+╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚══════╝╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝   ╚═╝  ╚═╝╚═╝   ╚═╝   
+                                                                                                         
+"""
+
+[app]
+entry = 'main' # 菜单入口
+
+[scripts]
+# 脚本集合，键值对
+memory = "free -h"
+disk = "df -hT"
+cpuinfo = "cat /proc/cpuinfo"
+whoami = "whoami"
+
+hello = "echo \"hello world\""
+yabs = "curl -sL yabs.sh | bash"
+docker = "bash <(curl -sL 'https://get.docker.com')"
+
+test = "echo '这是一个测试项'"
+
+
+[[menus]]
+id = "main"
+title = "主菜单"
+sub_menus = [
+    "info",
+    "tool",
+    "test"
+]
+
+[[menus]]
+id = "info"
+title = "系统信息"
+sub_menus = [
+    "cpu",
+    "memory",
+    "disk",
+    "current-user",
+]
+
+[[menus]]
+id = "cpu"
+title = "查看CPU信息"
+script = "cpuinfo"
+
+[[menus]]
+id = "memory"
+title = "查看内存信息"
+script = "memory"
+
+[[menus]]
+id = "disk"
+title = "查看硬盘信息"
+script = "disk"
+
+[[menus]]
+id = "current-user"
+title = "查看当前用户"
+script = "whoami"
+
+[[menus]]
+id = "tool"
+title = "工具"
+sub_menus = [
+    "yabs",
+    "docker",
+    "helloworld"
+]
+
+[[menus]]
+id = "yabs"
+title = "yabs测试"
+script = "yabs"
+
+[[menus]]
+id = "docker"
+title = "安装docker"
+script = "docker"
+
+[[menus]]
+id = "helloworld"
+title = "打印你好世界"
+script = "hello"
+
+[[menus]]
+id = "test"
+title = "测试项"
+script = "test"
