@@ -2,7 +2,7 @@
 set +e
 
 BIN_URL="https://github.com/NodeSeekDev/NskCore/releases/download/v0.0.1/nskCore"
-MENU_URL="https://raw.githubusercontent.com/NodeSeekDev/NskCore/refs/heads/main/memu.template.toml"
+MENU_URL="https://raw.githubusercontent.com/NodeSeekDev/NskCore/refs/heads/main/menu.template.toml"
 
 curl -Lso /usr/bin/nskCore $BIN_URL
 chmod u+x /usr/bin/nskCore
