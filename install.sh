@@ -1,7 +1,6 @@
 #!/bin/bash
 set +e
 
-
 project_name="nskCore"
 version="v0.0.1"
 MENU_URL="https://raw.githubusercontent.com/NodeSeekDev/NskCore/refs/heads/main/menu.template.toml"
