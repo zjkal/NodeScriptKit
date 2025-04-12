@@ -1,12 +1,11 @@
 #!/bin/bash
 set +e
 
-BIN_URL="https://github.com/NodeSeekDev/NskCore/releases/download/v0.0.1/"
-MENU_URL="https://raw.githubusercontent.com/NodeSeekDev/NskCore/refs/heads/main/menu.template.toml"
 
 project_name="nskCore"
 version="v0.0.1"
-release_url="https://github.com/NodeSeekDev/NskCore/releases/download/$version"
+MENU_URL="https://raw.githubusercontent.com/NodeSeekDev/NskCore/refs/heads/main/menu.template.toml"
+BIN_URL="https://github.com/NodeSeekDev/NskCore/releases/download/$version/"
 
 # 获取当前操作系统和架构
 goos=$(uname -s | tr '[:upper:]' '[:lower:]')  # 获取操作系统
