@@ -3,7 +3,8 @@ set +e
 
 project_name="nskCore"
 version="v0.0.1"
-MENU_URL="https://raw.githubusercontent.com/NodeSeekDev/NskCore/refs/heads/main/menu.template.toml"
+MENU_CONFIG_URL="https://raw.githubusercontent.com/NodeSeekDev/NskCore/refs/heads/main/menu.template.toml"
+MAIN_CONFIG_URL="https://raw.githubusercontent.com/NodeSeekDev/NskCore/refs/heads/main/main.template.toml"
 BIN_URL="https://github.com/NodeSeekDev/NskCore/releases/download/$version/"
 
 # 获取当前操作系统和架构
@@ -39,11 +40,13 @@ BIN_URL="$BIN_URL$BIN_FILENAME"
 curl -Lso /usr/bin/nskCore $BIN_URL
 chmod u+x /usr/bin/nskCore
 mkdir -p /etc/nsk
-curl -Lso /etc/nsk/menu.toml $MENU_URL
+curl -Lso /etc/nsk/config.toml $MAIN_CONFIG_URL
+mkdir -p /etc/nsk/modules.d
+curl -Lso /etc/nsk/modules.d/000-menu.toml $MENU_CONFIG_URL
 
 cat > /usr/bin/nsk <<-EOF
 #!/bin/bash
-nskCore -local /etc/nsk/menu.toml
+nskCore -config /etc/nsk/config.toml
 EOF
 chmod u+x /usr/bin/nsk
 ln -s /usr/bin/nsk /usr/bin/n
