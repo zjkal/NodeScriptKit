@@ -1,0 +1,14 @@
+[[menus]]
+id = "main"
+title = "主菜单"
+sub_menus = [
+    "system_info", #系统信息
+    "test_tool", #测试工具
+    "system_reinstall", #重装系统
+    "system_manage", #系统管理
+    "hardware_info", #硬件信息
+    "network_tools", #网络工具
+    "security_tools", #安全工具
+    "app_deployment", #应用部署
+    "utility_tools", #其他实用工具
+]

@@ -1,0 +1,46 @@
+[scripts]
+# 脚本集合，键值对
+memory = "free -h"
+disk = "df -hT"
+cpuinfo = "cat /proc/cpuinfo"
+whoami = "whoami"
+
+hello = "echo \"hello world\""
+docker = "bash <(curl -sL 'https://get.docker.com')"
+
+test = "echo '这是一个测试项'"
+
+[[menus]]
+id = "system_info"
+title = "系统信息"
+sub_menus = [
+    "cpu",
+    "memory",
+    "disk",
+    "current-user",
+]
+
+[[menus]]
+id = "cpu"
+title = "查看CPU信息"
+script = "cpuinfo"
+
+[[menus]]
+id = "memory"
+title = "查看内存信息"
+script = "memory"
+
+[[menus]]
+id = "disk"
+title = "查看硬盘信息"
+script = "disk"
+
+[[menus]]
+id = "current-user"
+title = "查看当前用户"
+script = "whoami"
+
+[[menus]]
+id = "test"
+title = "这是一个测试项"
+script = "test"

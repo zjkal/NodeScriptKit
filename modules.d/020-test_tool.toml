@@ -1,0 +1,100 @@
+[scripts]
+#测试类脚本
+#NodeQuality
+node_quality = "bash <(curl -sL run.NodeQuality.com)"
+#融合怪测试
+fusion_test = "bash <(curl -sL bash.spiritlhl.net/ecs)"
+#IP质量
+ip_quality = "bash <(curl -sL IP.Check.Place)"
+#网络质量
+network_quality = "bash <(curl -sL Net.Check.Place)"
+
+#yabs
+yabs = "bash <(curl -sL yabs.sh)"
+#benchmark
+bench = "bash <(curl -sL bench.sh)"
+#superbench
+super_bench = "bash <(curl -sL git.io/superbench.sh)"
+#supertrace
+super_trace = "bash <(curl -sL raw.githubusercontent.com/oooldking/script/master/supertrace.sh)"
+
+#解锁检测
+unlock_test = "bash <(curl -sL Media.Check.Place)"
+#回程路由
+return_route = "bash <(curl -sL raw.githubusercontent.com/zhanghanyun/backtrace/main/install.sh)"
+
+#nws
+nws_sh = "bash <(curl -sL nws.sh)"
+
+
+[[menus]]
+id = "test_tool"
+title = "测试工具"
+sub_menus = [
+  "node_quality",
+  "fusion_test",
+  "ip_quality",
+  "network_quality",
+  "yabs",
+  "bench",
+  "super_bench",
+  "unlock_test",
+  "return_route",
+  "super_trace",
+  "nws_sh",
+]
+
+[[menus]]
+id = "node_quality"
+title = "NodeQuality"
+script = "node_quality"
+
+[[menus]]
+id = "fusion_test"
+title = "融合怪"
+script = "fusion_test"
+
+[[menus]]
+id = "ip_quality"
+title = "IP质量"
+script = "ip_quality"
+
+[[menus]]
+id = "network_quality"
+title = "网络质量"
+script = "network_quality"
+
+[[menus]]
+id = "yabs"
+title = "YABS"
+script = "yabs"
+
+[[menus]]
+id = "bench"
+title = "Bench"
+script = "bench"
+
+[[menus]]
+id = "super_bench"
+title = "Super Bench"
+script = "super_bench"
+
+[[menus]]
+id = "unlock_test"
+title = "解锁检测"
+script = "unlock_test"
+
+[[menus]]
+id = "return_route"
+title = "回程路由[结果版]"
+script = "return_route"
+
+[[menus]]
+id = "super_trace"
+title = "回程路由[节点版]"
+script = "super_trace"
+
+[[menus]]
+id = "nws_sh"
+title = "综合测速"
+script = "nws_sh"

@@ -1,0 +1,51 @@
+[scripts]
+#网络工具
+bbr_install = "bash <(curl -sL sh.nekoneko.cloud/bbr/bbr.sh)"
+bbr_tcpx_install = "bash <(curl -sL raw.githubusercontent.com/ylx2016/Linux-NetSpeed/master/tcpx.sh)"
+brook_pf_install = "bash <(curl -Lso- sh.nekoneko.cloud/brook-pf/brook-pf.sh)"
+tools_install = "bash <(curl -Lso- raw.githubusercontent.com/BlackSheep-cry/TCP-Optimization-Tool/main/tool.sh)"
+realm_install = "bash <(curl -Lso- raw.githubusercontent.com/qqrrooty/EZrealm/main/realm.sh)"
+gost_install = "bash <(curl -Lso- raw.githubusercontent.com/qqrrooty/EZgost/main/gost.sh)"
+
+
+[[menus]]
+id = "network_tools"
+title = "网络工具"
+sub_menus = [
+  'tools_install',
+  'bbr_install',
+  'bbr_tcpx_install',
+  'realm_install',
+  'gost_install',
+  'brook_pf_install',
+]
+
+[[menus]]
+id = "bbr_install"
+title = "BBR安装[by Nekoneko]"
+script = "bbr_install"
+
+[[menus]]
+id = "bbr_tcpx_install"
+title = "锐速/BBRPLUS/BBR2安装[by ylx]"
+script = "bbr_tcpx_install"
+
+[[menus]]
+id = "tools_install"
+title = "TCP调优"
+script = "tools_install"
+
+[[menus]]
+id = "realm_install"
+title = "Realm 一键转发"
+script = "realm_install"
+
+[[menus]]
+id = "gost_install"
+title = "Ghost 一键转发"
+script = "gost_install"
+
+[[menus]]
+id = "brook_pf_install"
+title = "Brook一键转发[by Nekoneko]"
+script = "brook_pf_install"

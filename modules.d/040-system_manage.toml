@@ -1,0 +1,37 @@
+[scripts]
+#系统管理
+kernel_network_optimizer = "bash <(curl -Lso- git.io/kernel.sh)"
+dns_unlock = "bash <(curl -sL raw.githubusercontent.com/Jimmyzxk/DNS-Alice-Unlock/refs/heads/main/dns-unlock.sh)"
+add_zram = "bash <(curl -sL raw.githubusercontent.com/spiritLHLS/addzram/main/addzram.sh)"
+add_swap = "bash <(curl -sL raw.githubusercontent.com/spiritLHLS/addswap/main/addswap.sh)"
+
+
+[[menus]]
+id = "system_manage"
+title = "系统管理"
+sub_menus = [
+  'kernel_network_optimizer',
+  'dns_unlock',
+  'add_zram',
+  'add_swap',
+]
+
+[[menus]]
+id = "kernel_network_optimizer"
+title = "内核与网络优化"
+script = "kernel_network_optimizer"
+
+[[menus]]
+id = "dns_unlock"
+title = "一键修改解锁DNS"
+script = "dns_unlock"
+
+[[menus]]
+id = "add_zram"
+title = "addZram"
+script = "add_zram"
+
+[[menus]]
+id = "add_swap"
+title = "addSwap"
+script = "add_swap"

@@ -1,0 +1,44 @@
+[scripts]
+# 脚本集合，键值对
+ssh_management = "bash <(curl -sL nsk-35i.pages.dev/shell_scripts/utility_tools/ssh_management.sh)"
+crontab_management = "bash <(curl -sL nsk-35i.pages.dev/shell_scripts/utility_tools/crontab_management.sh)"
+hostname_management = "bash <(curl -sL nsk-35i.pages.dev/shell_scripts/utility_tools/hostname_management.sh)"
+ports_management = "bash <(curl -sL nsk-35i.pages.dev/shell_scripts/utility_tools/ports_management.sh)"
+auto_mount_disk = "bash <(curl -sL nsk-35i.pages.dev/shell_scripts/utility_tools/auto_mount_disk.sh)"
+
+
+[[menus]]
+id = "utility_tools"
+title = "实用工具"
+sub_menus = [
+  'ssh_management',
+  'crontab_management',
+  'ports_management',
+  'hostname_management',
+  'auto_mount_disk',
+]
+
+[[menus]]
+id = "ssh_management"
+title = "SSH 管理"
+script = "ssh_management"
+
+[[menus]]
+id = "crontab_management"
+title = "Crontab 管理"
+script = "crontab_management"
+
+[[menus]]
+id = "ports_management"
+title = "端口管理"
+script = "ports_management"
+
+[[menus]]
+id = "hostname_management"
+title = "修改主机名称"
+script = "hostname_management"
+
+[[menus]]
+id = "auto_mount_disk"
+title = "挂载磁盘管理"
+script = "auto_mount_disk"

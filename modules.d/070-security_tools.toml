@@ -1,0 +1,16 @@
+[scripts]
+#安全工具
+fail2ban = "bash <(curl -sL raw.githubusercontent.com/FunctionClub/Fail2ban/master/fail2ban.sh)"
+
+
+[[menus]]
+id = "security_tools"
+title = "安全工具"
+sub_menus = [
+  'fail2ban'
+]
+
+[[menus]]
+id = "fail2ban"
+title = "Fail2ban"
+script = "fail2ban"

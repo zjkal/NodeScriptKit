@@ -1,0 +1,30 @@
+[scripts]
+#重装系统
+reinstall = "bash <(curl -sL nsk-35i.pages.dev/shell_scripts/system_reinstall/reinstall.sh)"
+installnet = "bash <(curl -sL nsk-35i.pages.dev/shell_scripts/system_reinstall/installnet.sh)"
+osmutation = "bash <(curl -sL nsk-35i.pages.dev/shell_scripts/system_reinstall/osmutation.sh)"
+
+[[menus]]
+id = "system_reinstall"
+title = "重装系统"
+sub_menus = [
+  "reinstall",
+  "installnet",
+  "osmutation",
+]
+
+#重装系统
+[[menus]]
+id = "reinstall"
+title = "Reinstall（史上更强）"
+script = "reinstall"
+
+[[menus]]
+id = "installnet"
+title = "InstallNET.sh"
+script = "installnet"
+
+[[menus]]
+id = "osmutation"
+title = "OsMutation"
+script = "osmutation"
