@@ -1,7 +1,8 @@
 #!/bin/bash
-# 获取当前操作系统和架构
-goos=$(uname -s | tr '[:upper:]' '[:lower:]')  # 获取操作系统
-goarch=$(uname -m)                            # 获取架构
+# 功能: NodeScriptKit 安装和更新脚本
+
+goos=$(uname -s | tr '[:upper:]' '[:lower:]')
+goarch=$(uname -m)                       
 
 echo "Current OS: $goos"
 echo "Current Architecture: $goarch"
@@ -35,7 +36,6 @@ curl -Lso /usr/bin/nskCore $BIN_URL
 chmod u+x /usr/bin/nskCore
 
 if tar --version 2>&1 | grep -qi 'busybox'; then
-    # 检查是否存在 apk 命令（Alpine 包管理器）
     if command -v apk >/dev/null 2>&1; then
         apk add --no-cache tar
     fi
@@ -52,6 +52,7 @@ temp_dir=$(mktemp -d)
 curl -sLo - $temp_download_file "https://github.com/NodeSeekDev/NodeScriptKit/archive/refs/tags/$MENU_VERSION.tar.gz" | \
     tar -xzv -C $temp_dir
 cp $temp_dir/*/menu.toml /etc/nsk/config.toml
+rm -rf /etc/nsk/modules.d/default/*  # Remove old scripts to prevent conflicts
 cp $temp_dir/*/modules.d/* /etc/nsk/modules.d/default/
 
 echo $MENU_VERSION > /etc/nsk/version
