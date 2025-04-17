@@ -1,12 +1,4 @@
 #!/bin/bash
-set +e
-
-project_name="nskCore"
-version="v0.0.1"
-MENU_CONFIG_URL="https://raw.githubusercontent.com/NodeSeekDev/NskCore/refs/heads/main/menu.template.toml"
-MAIN_CONFIG_URL="https://raw.githubusercontent.com/NodeSeekDev/NskCore/refs/heads/main/main.template.toml"
-BIN_URL="https://github.com/NodeSeekDev/NskCore/releases/download/$version/"
-
 # 获取当前操作系统和架构
 goos=$(uname -s | tr '[:upper:]' '[:lower:]')  # 获取操作系统
 goarch=$(uname -m)                            # 获取架构
@@ -34,20 +26,37 @@ else
     exit 1
 fi
 
-BIN_FILENAME="$project_name-$goos-$arch$ext"
-BIN_URL="$BIN_URL$BIN_FILENAME"
+BIN_VERSION="$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/NodeSeekDev/NskCore/releases/latest)"
+BIN_VERSION=${BIN_VERSION##*/}
+BIN_FILENAME="nskCore-$goos-$arch$ext"
+BIN_URL="https://github.com/NodeSeekDev/NskCore/releases/download/$BIN_VERSION/$BIN_FILENAME"
 
 curl -Lso /usr/bin/nskCore $BIN_URL
 chmod u+x /usr/bin/nskCore
-mkdir -p /etc/nsk
-curl -Lso /etc/nsk/config.toml $MAIN_CONFIG_URL
-mkdir -p /etc/nsk/modules.d
-curl -Lso /etc/nsk/modules.d/000-menu.toml $MENU_CONFIG_URL
 
-cat > /usr/bin/nsk <<-EOF
-#!/bin/bash
-nskCore -config /etc/nsk/config.toml
-EOF
+if tar --version 2>&1 | grep -qi 'busybox'; then
+    # 检查是否存在 apk 命令（Alpine 包管理器）
+    if command -v apk >/dev/null 2>&1; then
+        apk add --no-cache tar
+    fi
+fi
+
+MENU_URL="$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/NodeSeekDev/NodeScriptKit/releases/latest)"
+MENU_VERSION="${MENU_URL##*/}"
+
+mkdir -p /etc/nsk/modules.d/default
+mkdir -p /etc/nsk/modules.d/extend
+
+cd /tmp
+temp_dir=$(mktemp -d)
+curl -sLo - $temp_download_file "https://github.com/NodeSeekDev/NodeScriptKit/archive/refs/tags/$MENU_VERSION.tar.gz" | \
+    tar -xzv -C $temp_dir
+cp $temp_dir/*/menu.toml /etc/nsk/config.toml
+cp $temp_dir/*/modules.d/* /etc/nsk/modules.d/default/
+
+echo $MENU_VERSION > /etc/nsk/version
+
+cp $temp_dir/*/nsk.sh /usr/bin/nsk
 chmod u+x /usr/bin/nsk
 ln -s /usr/bin/nsk /usr/bin/n
 
