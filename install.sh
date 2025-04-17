@@ -58,6 +58,6 @@ echo $MENU_VERSION > /etc/nsk/version
 
 cp $temp_dir/*/nsk.sh /usr/bin/nsk
 chmod u+x /usr/bin/nsk
-ln -s /usr/bin/nsk /usr/bin/n
+[ -f "/usr/bin/n" ] || ln -s /usr/bin/nsk /usr/bin/n
 
 echo 'nsk and n command is available'
