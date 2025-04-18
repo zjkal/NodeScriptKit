@@ -10,6 +10,8 @@ NodeScriptKit项目，简称nsk项目。它是
 bash <(curl -sL https://sh.nodeseek.com)
 ```
 
+![screenshot](./img/screenshot1.png)
+
 ## 主配置文件说明
 - 配置文件采用[toml格式](https://toml.io/cn/v1.0.0)，可以使用[vscode](https://code.visualstudio.com/)配合[Even Better TOML](https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml)插件或者一些[在线编辑器](https://www.toml-lint.com/)编辑
 - nsk的主配置文件默认位于/etc/nsk/config.toml
@@ -79,3 +81,7 @@ script = "test"
 - 菜单类要以3位数字开头，安装优先级排序，数值大的内容可以合并/覆盖数值小的
 - 脚本类尽量在文件开头写明代码脚本描述，可以参考这个[模板文件](./shell_scripts/example.v0.0.1.0417.sh)
 - 脚本尽量使用交互式调用
+
+## 社区公约&开发指南
+- [社区公约](./Development.md)
+- [开发指南](./Rules.md)
