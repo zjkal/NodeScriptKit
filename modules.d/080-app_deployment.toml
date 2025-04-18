@@ -6,7 +6,7 @@ app_1panel = "bash <(curl -sL resource.1panel.pro/quick_start.sh)"
 app_nezha = "bash <(curl -sL raw.githubusercontent.com/nezhahq/scripts/refs/heads/main/install.sh)"
 app_warp = "bash <(curl -sL gitlab.com/fscarmen/warp_unlock/-/raw/main/unlock.sh)"
 app_aria2 = "bash <(curl -sL raw.githubusercontent.com/ToyoDAdoubiBackup/doubi/master/aria2.sh)"
-app_alist = "bash <(curl -sL nsk-35i.pages.dev/sh/app_deployment/alist_manager.sh)"
+app_alist = "bash <(curl -sL raw.githubusercontent.com/NodeSeekDev/NodeScriptKit/master/shell_scripts/app_deployment/alist_manager.sh)"
 app_aurora = "bash <(curl -sL raw.githubusercontent.com/Aurora-Admin-Panel/deploy/main/install.sh)"
 
 

@@ -5,9 +5,8 @@ dns_unlock = "bash <(curl -sL raw.githubusercontent.com/Jimmyzxk/DNS-Alice-Unloc
 add_zram = "bash <(curl -sL raw.githubusercontent.com/spiritLHLS/addzram/main/addzram.sh)"
 add_swap = "bash <(curl -sL raw.githubusercontent.com/spiritLHLS/addswap/main/addswap.sh)"
 
-manage_services = "bash <(curl -sL nsk-35i.pages.dev/shell_scripts/system_manage/manage_services.sh)"
-terminal_setup = "bash <(curl -sL nsk-35i.pages.dev/shell_scripts/system_manage/terminal_setup.sh)"
-
+manage_services = "bash <(curl -sL raw.githubusercontent.com/NodeSeekDev/NodeScriptKit/refs/heads/main/shell_scripts/system_manage/manage_services.sh)"
+terminal_setup = "bash <(curl -sL raw.githubusercontent.com/NodeSeekDev/NodeScriptKit/refs/heads/main/shell_scripts/system_manage/terminal_setup.sh)"
 
 [[menus]]
 id = "system_manage"

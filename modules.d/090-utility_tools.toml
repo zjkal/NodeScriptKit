@@ -1,10 +1,10 @@
 [scripts]
 # 脚本集合，键值对
-ssh_management = "bash <(curl -sL nsk-35i.pages.dev/shell_scripts/utility_tools/ssh_management.sh)"
-crontab_management = "bash <(curl -sL nsk-35i.pages.dev/shell_scripts/utility_tools/crontab_management.sh)"
-hostname_management = "bash <(curl -sL nsk-35i.pages.dev/shell_scripts/utility_tools/hostname_management.sh)"
-ports_management = "bash <(curl -sL nsk-35i.pages.dev/shell_scripts/utility_tools/ports_management.sh)"
-auto_mount_disk = "bash <(curl -sL nsk-35i.pages.dev/shell_scripts/utility_tools/auto_mount_disk.sh)"
+ssh_management = "bash <(curl -sL raw.githubusercontent.com/NodeSeekDev/NodeScriptKit/refs/heads/main/shell_scripts/utility_tools/ssh_management.sh)"
+crontab_management = "bash <(curl -sL raw.githubusercontent.com/NodeSeekDev/NodeScriptKit/refs/heads/main/shell_scripts/utility_tools/crontab_management.sh)"
+hostname_management = "bash <(curl -sL raw.githubusercontent.com/NodeSeekDev/NodeScriptKit/refs/heads/main/shell_scripts/utility_tools/hostname_management.sh)"
+ports_management = "bash <(curl -sL raw.githubusercontent.com/NodeSeekDev/NodeScriptKit/refs/heads/main/shell_scripts/utility_tools/ports_management.sh)"
+auto_mount_disk = "bash <(curl -sL raw.githubusercontent.com/NodeSeekDev/NodeScriptKit/refs/heads/main/shell_scripts/utility_tools/auto_mount_disk.sh)"
 
 
 [[menus]]

@@ -6,26 +6,24 @@ node_quality = "bash <(curl -sL run.NodeQuality.com)"
 fusion_test = "bash <(curl -sL bash.spiritlhl.net/ecs)"
 #IP质量
 ip_quality = "bash <(curl -sL IP.Check.Place)"
-#网络质量
-network_quality = "bash <(curl -sL Net.Check.Place)"
 
-#yabs
-yabs = "bash <(curl -sL yabs.sh)"
-#benchmark
-bench = "bash <(curl -sL bench.sh)"
-#superbench
-super_bench = "bash <(curl -sL git.io/superbench.sh)"
-#supertrace
-super_trace = "bash <(curl -sL raw.githubusercontent.com/oooldking/script/master/supertrace.sh)"
+network_quality = "bash <(curl -sL Net.Check.Place)" #网络质量
+yabs = "bash <(curl -sL yabs.sh)" #yabs
+bench = "bash <(curl -sL bench.sh)" #benchmark
+super_bench = "bash <(curl -sL git.io/superbench.sh)" #superbench
+super_trace = "bash <(curl -sL raw.githubusercontent.com/oooldking/script/master/supertrace.sh)" #supertrace
+unlock_test = "bash <(curl -sL Media.Check.Place)" #解锁检测
+return_route = "bash <(curl -sL raw.githubusercontent.com/zhanghanyun/backtrace/main/install.sh)" #回程路由
+nws_sh = "bash <(curl -sL nws.sh)" #nws
 
-#解锁检测
-unlock_test = "bash <(curl -sL Media.Check.Place)"
-#回程路由
-return_route = "bash <(curl -sL raw.githubusercontent.com/zhanghanyun/backtrace/main/install.sh)"
 
-#nws
-nws_sh = "bash <(curl -sL nws.sh)"
-
+#硬件类测试
+dedicated_benchmark = "bash <(curl -sL git.io/ceshi)"
+disk_write_test = "bash <(curl -sL raw.githubusercontent.com/NodeSeekDev/NodeScriptKit/refs/heads/main/shell_scripts/hardware_info/disk_test.sh)"
+lemon_bench_full="bash <(curl -sL raw.githubusercontent.com/LemonBench/LemonBench/main/LemonBench.sh) --full"
+lemon_bench_fast="bash <(curl -sL raw.githubusercontent.com/LemonBench/LemonBench/main/LemonBench.sh) --fast"
+unix_bench = "bash <(curl -sL github.com/teddysun/across/raw/master/unixbench.sh)"
+memory_check = "bash <(curl -sL raw.githubusercontent.com/uselibrary/memoryCheck/main/memoryCheck.sh)"
 
 [[menus]]
 id = "test_tool"
@@ -42,6 +40,13 @@ sub_menus = [
   "return_route",
   "super_trace",
   "nws_sh",
+
+  'dedicated_benchmark',
+  'lemon_bench_full',
+  'lemon_bench_fast',
+  'unix_bench',
+  'disk_write_test',
+  'memory_check',
 ]
 
 [[menus]]
@@ -98,3 +103,34 @@ script = "super_trace"
 id = "nws_sh"
 title = "综合测速"
 script = "nws_sh"
+
+[[menus]]
+id = "dedicated_benchmark"
+title = "独服基准脚本"
+script = "dedicated_benchmark"
+
+[[menus]]
+id = "disk_write_test"
+title = "硬盘写入测试"
+script = "disk_write_test"
+
+[[menus]]
+id = "memory_check"
+title = "超售测试"
+script = "memory_check"
+
+
+[[menus]]
+id = "lemon_bench_full"
+title = "LemonBench[完整版]"
+script = "lemon_bench_full"
+
+[[menus]]
+id = "lemon_bench_fast"
+title = "LemonBench[快速版]"
+script = "lemon_bench_fast"
+
+[[menus]]
+id = "unix_bench"
+title = "UnixBench"
+script = "unix_bench"

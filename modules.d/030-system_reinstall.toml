@@ -1,8 +1,8 @@
 [scripts]
 #重装系统
-reinstall = "bash <(curl -sL nsk-35i.pages.dev/shell_scripts/system_reinstall/reinstall.sh)"
-installnet = "bash <(curl -sL nsk-35i.pages.dev/shell_scripts/system_reinstall/installnet.sh)"
-osmutation = "bash <(curl -sL nsk-35i.pages.dev/shell_scripts/system_reinstall/osmutation.sh)"
+reinstall = "bash <(curl -sL raw.githubusercontent.com/NodeSeekDev/NodeScriptKit/refs/heads/main/shell_scripts/system_reinstall/reinstall.sh)"
+installnet = "bash <(curl -sL raw.githubusercontent.com/NodeSeekDev/NodeScriptKit/refs/heads/main/shell_scripts/system_reinstall/installnet.sh)"
+osmutation = "bash <(curl -sL raw.githubusercontent.com/LloydAsp/OsMutation/main/OsMutation.sh)"
 
 [[menus]]
 id = "system_reinstall"
