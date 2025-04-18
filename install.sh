@@ -61,4 +61,4 @@ cp $temp_dir/*/nsk.sh /usr/bin/nsk
 chmod u+x /usr/bin/nsk
 [ -f "/usr/bin/n" ] || ln -s /usr/bin/nsk /usr/bin/n
 
-echo -e "\e[1;32mnsk脚本安装成功啦\e[m"
+echo -e "\e[1;32mnsk脚本安装成功啦，可以输入n或者nsk命令唤出菜单\e[m"
