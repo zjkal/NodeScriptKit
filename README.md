@@ -4,6 +4,12 @@ NodeScriptKit项目，简称nsk项目。它是
 - 一个可自由扩展配置，支持订阅，交互式的，服务器辅助脚本汇总集合
 - 一个能够节省你大量命令/脚本查找时间的项目
 
+## 使用方法
+
+```
+bash <(curl -sL https://sh.nodeseek.com)
+```
+
 ## 主配置文件说明
 - 配置文件采用[toml格式](https://toml.io/cn/v1.0.0)，可以使用[vscode](https://code.visualstudio.com/)配合[Even Better TOML](https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml)插件或者一些[在线编辑器](https://www.toml-lint.com/)编辑
 - nsk的主配置文件默认位于/etc/nsk/config.toml
