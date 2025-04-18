@@ -5,10 +5,15 @@
 # 功能: 这是一个端口管理脚本，用于管理本机的端口。
 # 作者: rouxyang <https://www.nodeseek.com/space/29457>
 # 创建日期: 2025-04-13
+# 许可证: MIT
 
 ### === 版本信息 === ###
 SCRIPT_VERSION="0.0.1"
-echo -e "\033[32m[信息] 脚本版本: $SCRIPT_VERSION\033[0m"
+SCRIPT_NAME="用于管理本机的端口"
+SCRIPT_AUTHOR="[@Rouxyang] <https://www.nodeseek.com/space/29457>"
+
+echo -e "\033[33m[信息] $SCRIPT_NAME ，版本: $SCRIPT_VERSION\033[0m"
+echo -e "\033[33m[作者] $SCRIPT_AUTHOR\033[0m"
 
 ### === 退出状态码 === ###
 EXIT_SUCCESS=0
@@ -24,7 +29,6 @@ GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 CYAN='\033[0;36m'
 NC='\033[0m'
-
 
 ### === 彩色输出函数 === ###
 success() { printf "${GREEN}%b${NC} ${@:2}\n" "$1"; }

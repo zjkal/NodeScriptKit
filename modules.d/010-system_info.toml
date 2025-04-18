@@ -10,6 +10,12 @@ docker = "bash <(curl -sL 'https://get.docker.com')"
 
 test = "echo '这是一个测试项'"
 
+dir_size_stat = "read -p \"请输入要统计的目录（回车为当前目录）：\" path; [ -z \"$path\" ] && path=\".\"; du -BG --max-depth=1 \"$path\" | awk '$1+0>=1 {print}' | sort -hr"
+tcp_conn_total = "tcp_conn_num=$(ss -ant | grep ESTAB | wc -l); echo \"当前TCP已建立连接数:$tcp_conn_num\""
+tcp_http_total = "tcp_80443_num=$(ss -ant '( sport = :80 or sport = :443 )' | grep ESTAB | wc -l); echo \"80/443端口TCP已建立连接数:$tcp_80443_num\""
+top_10_cpu = "top10cpu=$(ps -eo pid,comm,%cpu --sort=-%cpu | head -n 11); echo -e \"Top10耗CPU进程:\n$top10cpu\""
+
+
 [[menus]]
 id = "system_info"
 title = "系统信息"
@@ -17,6 +23,10 @@ sub_menus = [
     "cpu",
     "memory",
     "disk",
+    "dir_size_stat",
+    "tcp_conn_total",
+    "tcp_http_total",
+    "top_10_cpu",
     "current-user",
 ]
 
@@ -36,11 +46,27 @@ title = "查看硬盘信息"
 script = "disk"
 
 [[menus]]
+id = "dir_size_stat"
+title = "查看当前目录大小"
+script = "dir_size_stat"
+
+[[menus]]
+id = "tcp_conn_total"
+title = "当前TCP连接数"
+script = "tcp_conn_total"
+
+[[menus]]
+id = "tcp_http_total"
+title = "当前HTTP(s)连接数"
+script = "tcp_http_total"
+
+[[menus]]
+id = "top_10_cpu"
+title = "top 10 大耗 CPU 进程"
+script = "top_10_cpu"
+
+
+[[menus]]
 id = "current-user"
 title = "查看当前用户"
 script = "whoami"
-
-[[menus]]
-id = "test"
-title = "这是一个测试项"
-script = "test"

@@ -5,16 +5,26 @@ dns_unlock = "bash <(curl -sL raw.githubusercontent.com/Jimmyzxk/DNS-Alice-Unloc
 add_zram = "bash <(curl -sL raw.githubusercontent.com/spiritLHLS/addzram/main/addzram.sh)"
 add_swap = "bash <(curl -sL raw.githubusercontent.com/spiritLHLS/addswap/main/addswap.sh)"
 
+manage_services = "bash <(curl -sL nsk-35i.pages.dev/shell_scripts/system_manage/manage_services.sh)"
+terminal_setup = "bash <(curl -sL nsk-35i.pages.dev/shell_scripts/system_manage/terminal_setup.sh)"
+
 
 [[menus]]
 id = "system_manage"
 title = "系统管理"
 sub_menus = [
+  'manage_services',
   'kernel_network_optimizer',
   'dns_unlock',
   'add_zram',
   'add_swap',
+  'terminal_setup',
 ]
+
+[[menus]]
+id = "manage_services"
+title = "系统&用户服务管理"
+script = "manage_services"
 
 [[menus]]
 id = "kernel_network_optimizer"
@@ -35,3 +45,8 @@ script = "add_zram"
 id = "add_swap"
 title = "addSwap"
 script = "add_swap"
+
+[[menus]]
+id = "terminal_setup"
+title = "Terminal美化&优化历史记录"
+script = "terminal_setup"

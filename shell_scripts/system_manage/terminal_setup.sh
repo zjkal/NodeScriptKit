@@ -5,6 +5,7 @@
 # 功能: 这是一个终端优化与美化脚本，用于优化终端的展示效果与功能。
 # 作者: rouxyang <https://www.nodeseek.com/space/29457>
 # 创建日期: 2025-04-13
+# 许可证: MIT
 
 ### === 版本信息 === ###
 SCRIPT_VERSION="0.0.1"
@@ -328,7 +329,7 @@ alias t='tree'                       # 显示目录树
 alias c='clear'                      # 简写清除屏幕
 alias h='history'                    # 查看命令历史
 alias p='ps aux'                     # 查看所有进程
-alias n='netstat -tuln'              # 查看监听端口
+alias nt='netstat -tuln'             # 查看监听端口
 EOF
     source ~/.bashrc
     success "Bash 配置已写入 & 生效"
