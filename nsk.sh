@@ -1,7 +1,9 @@
 #!/bin/bash
 MENU_URL="$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/NodeSeekDev/NodeScriptKit/releases/latest)"
 MENU_VERSION="${MENU_URL##*/}"
-if [ "$MENU_VERSION" != "$(cat /etc/nsk/version)" ] ; then
+if [ -n "$MENU_VERSION" ] && \
+    [ "$MENU_VERSION" != latest ] && \
+    [ "$MENU_VERSION" != "$(cat /etc/nsk/version)" ] ; then
     echo "检测到有新版本可以更新，是否升级？[y/N]"
     read -r ans
     if [ "$ans" = "y" ] || [ "$ans" = "Y" ]; then
