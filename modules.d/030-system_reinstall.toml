@@ -16,7 +16,7 @@ sub_menus = [
 #重装系统
 [[menus]]
 id = "reinstall"
-title = "Reinstall（史上更强）"
+title = "Reinstall"
 script = "reinstall"
 
 [[menus]]

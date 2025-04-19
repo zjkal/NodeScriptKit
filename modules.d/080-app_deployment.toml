@@ -4,7 +4,6 @@ app_bt = "bash <(curl -sL download.bt.cn/install/install_panel.sh) ed8484bec"
 app_aapanel = "bash <(curl -sL www.aapanel.com/script/install_7.0_en.sh)"
 app_1panel = "bash <(curl -sL resource.1panel.pro/quick_start.sh)"
 app_nezha = "bash <(curl -sL raw.githubusercontent.com/nezhahq/scripts/refs/heads/main/install.sh)"
-app_warp = "bash <(curl -sL gitlab.com/fscarmen/warp_unlock/-/raw/main/unlock.sh)"
 app_aria2 = "bash <(curl -sL raw.githubusercontent.com/ToyoDAdoubiBackup/doubi/master/aria2.sh)"
 app_alist = "bash <(curl -sL raw.githubusercontent.com/NodeSeekDev/NodeScriptKit/master/shell_scripts/app_deployment/alist_manager.sh)"
 app_aurora = "bash <(curl -sL raw.githubusercontent.com/Aurora-Admin-Panel/deploy/main/install.sh)"
@@ -43,11 +42,6 @@ script = "app_1panel"
 id = "app_nezha"
 title = "nezha面板[官方版]"
 script = "app_nezha"
-
-[[menus]]
-id = "app_warp"
-title = "warp解锁"
-script = "app_warp"
 
 [[menus]]
 id = "app_aria2"

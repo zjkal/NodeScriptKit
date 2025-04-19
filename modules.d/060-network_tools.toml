@@ -2,6 +2,7 @@
 #网络工具
 bbr_install = "bash <(curl -sL sh.nekoneko.cloud/bbr/bbr.sh)"
 bbr_tcpx_install = "bash <(curl -sL raw.githubusercontent.com/ylx2016/Linux-NetSpeed/master/tcpx.sh)"
+app_warp = "bash <(curl -sL gitlab.com/fscarmen/warp_unlock/-/raw/main/unlock.sh)"
 brook_pf_install = "bash <(curl -Lso- sh.nekoneko.cloud/brook-pf/brook-pf.sh)"
 tools_install = "bash <(curl -Lso- raw.githubusercontent.com/BlackSheep-cry/TCP-Optimization-Tool/main/tool.sh)"
 realm_install = "bash <(curl -Lso- raw.githubusercontent.com/qqrrooty/EZrealm/main/realm.sh)"
@@ -14,6 +15,7 @@ title = "网络工具"
 sub_menus = [
   'tools_install',
   'bbr_install',
+  'app_warp',
   'bbr_tcpx_install',
   'realm_install',
   'gost_install',
@@ -29,6 +31,11 @@ script = "bbr_install"
 id = "bbr_tcpx_install"
 title = "锐速/BBRPLUS/BBR2安装[by ylx]"
 script = "bbr_tcpx_install"
+
+[[menus]]
+id = "app_warp"
+title = "warp安装"
+script = "app_warp"
 
 [[menus]]
 id = "tools_install"
