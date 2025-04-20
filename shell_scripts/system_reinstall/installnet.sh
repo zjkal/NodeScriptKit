@@ -1,10 +1,49 @@
 #!/bin/bash
 
+### === 脚本描述 === ###
+# 脚本名称: installnet.sh
+# 功能: InstallNET.sh 的交互式脚本，可以选择自己安装的系统。
+# 作者: rouxyang <https://www.nodeseek.com/space/29457>
+# 创建日期: 2025-04-20
+# 许可证: MIT
+
 ### === 版本信息 === ###
-SCRIPT_VERSION="0.0.1"
+SCRIPT_VERSION="0.0.2"
+SCRIPT_NAME="reinstall交互式安装脚本"
+SCRIPT_AUTHOR="[@Rouxyang] <https://www.nodeseek.com/space/29457>"
+
+echo -e "\033[33m[信息] $SCRIPT_NAME ，版本: $SCRIPT_VERSION\033[0m"
+echo -e "\033[33m[作者] $SCRIPT_AUTHOR\033[0m"
+
+### === 退出状态码 === ###
+EXIT_SUCCESS=0
+EXIT_ERROR=1
+EXIT_INTERRUPT=130 # Ctrl+C 退出码
 
 ### === 权限检查 === ###
 [[ $EUID -ne 0 ]] && echo -e "\033[31m[错误] 请以root用户或sudo运行此脚本！\033[0m" && exit 1
+
+### === 颜色定义 === ###
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+CYAN='\033[0;36m'
+NC='\033[0m'
+
+### === 彩色输出函数 === ###
+success() { printf "${GREEN}%b${NC} ${@:2}\n" "$1"; }
+info() { printf "${CYAN}%b${NC} ${@:2}\n" "$1"; }
+danger() { printf "\n${RED}[错误] %b${NC}\n" "$@"; }
+warn() { printf "${YELLOW}[警告] %b${NC}\n" "$@"; }
+
+### === 信号捕获 === ###
+cleanup() {
+    log "INFO" "脚本被中断..."
+    echo -e "${YELLOW}[警告] 脚本已退出！${NC}"
+    exit $EXIT_INTERRUPT
+}
+trap cleanup SIGINT SIGTERM
+
 
 ### === 工具检查 === ###
 check_dependencies() {
@@ -16,32 +55,20 @@ check_dependencies() {
   done
 }
 
-### === 颜色与提示函数 === ###
-GREEN='\033[32m'
-RED='\033[31m'
-YELLOW='\033[33m'
-BLUE='\033[34m'
-BOLD='\033[1m'
-NC='\033[0m'
-
-info() { echo -e "${BLUE}[信息]${NC} $1"; }
-success() { echo -e "${GREEN}[成功]${NC} $1"; }
-warning() { echo -e "${YELLOW}[提示]${NC} $1"; }
-error() { echo -e "${RED}[错误]${NC} $1"; }
 
 ### === 函数：定义系统和版本 === ###
 define_systems() {
-    SYSTEMS=( "debian" "ubuntu" "centos" "alpine" "kali" "almalinux" "rockylinux" "fedora" "windows" )
+    SYSTEMS=( "ubuntu" "debian" "centos" "alpine" "kali" "almalinux" "rockylinux" "fedora" "windows" )
     declare -gA VERSIONS
-    VERSIONS["debian"]="12 11 10 9"
-    VERSIONS["ubuntu"]="22.04 20.04 18.04 16.04"
-    VERSIONS["centos"]="9 8 7"
+    VERSIONS["ubuntu"]="24.04 22.04 20.04"
+    VERSIONS["debian"]="12 11 10 9 8 7"
+    VERSIONS["centos"]="10 9 8 7"
     VERSIONS["alpine"]="edge 3.21 3.20 3.19 3.18"
     VERSIONS["kali"]="rolling"
     VERSIONS["almalinux"]="9 8"
     VERSIONS["rockylinux"]="9 8"
-    VERSIONS["fedora"]="41 40 39 38"
-    VERSIONS["windows"]="11 10"
+    VERSIONS["fedora"]="39 38"
+    VERSIONS["windows"]="2022 2019 2016 2012 11 10"
     DEFAULT_PASSWORD="LeitboGi0ro"
     DEFAULT_PORT="22"
 }
@@ -54,7 +81,7 @@ select_system() {
             success "已选择系统：$SYSTEM"
             break
         else
-            warning "无效选择，请重试"
+            warn "无效选择，请重试"
         fi
     done
 }
@@ -78,7 +105,7 @@ select_version() {
                 success "已选择版本：$VERSION"
                 break
             else
-                warning "无效选择，请重试"
+                warn "无效选择，请重试"
             fi
         done
     else
@@ -101,7 +128,7 @@ select_arch() {
                 "32-bit") ARCH_FLAG="-v 32"; break ;;
                 "arm64") ARCH_FLAG="-v arm64"; break ;;
                 "跳过（自动检测）") ARCH_FLAG=""; break ;;
-                *) warning "无效选择，请重试" ;;
+                *) warn "无效选择，请重试" ;;
             esac
         done
     fi
@@ -109,7 +136,7 @@ select_arch() {
 
 ### === 函数：设置密码 === ###
 input_password() {
-    warning "请输入密码（留空使用默认密码）: "
+    warn "请输入密码（留空使用默认密码）: "
     read -rs PASSWORD
     echo
     PASSWORD=${PASSWORD:-$DEFAULT_PASSWORD}
@@ -190,7 +217,7 @@ confirm_and_run() {
         success "开始执行安装流程..."
         eval "$CMD"
     else
-        warning "已取消执行。"
+        warn "已取消执行。"
         exit 0
     fi
 }

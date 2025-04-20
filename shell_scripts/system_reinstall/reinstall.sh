@@ -1,10 +1,50 @@
 #!/bin/bash
 
+### === 脚本描述 === ###
+# 脚本名称: reinstall.sh
+# 功能: reinstall 的交互式脚本，可以选择自己安装的系统。
+# 作者: rouxyang <https://www.nodeseek.com/space/29457>
+# 创建日期: 2025-04-20
+# 许可证: MIT
+
 ### === 版本信息 === ###
-SCRIPT_VERSION="0.0.1"
+SCRIPT_VERSION="0.0.2"
+SCRIPT_NAME="reinstall交互式安装脚本"
+SCRIPT_AUTHOR="[@Rouxyang] <https://www.nodeseek.com/space/29457>"
+
+echo -e "\033[33m[信息] $SCRIPT_NAME ，版本: $SCRIPT_VERSION\033[0m"
+echo -e "\033[33m[作者] $SCRIPT_AUTHOR\033[0m"
+
+### === 退出状态码 === ###
+EXIT_SUCCESS=0
+EXIT_ERROR=1
+EXIT_INTERRUPT=130 # Ctrl+C 退出码
 
 ### === 权限检查 === ###
 [[ $EUID -ne 0 ]] && echo -e "\033[31m[错误] 请以root用户或sudo运行此脚本！\033[0m" && exit 1
+
+### === 颜色定义 === ###
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+CYAN='\033[0;36m'
+NC='\033[0m'
+
+### === 彩色输出函数 === ###
+success() { printf "${GREEN}%b${NC} ${@:2}\n" "$1"; }
+info() { printf "${CYAN}%b${NC} ${@:2}\n" "$1"; }
+danger() { printf "\n${RED}[错误] %b${NC}\n" "$@"; }
+warn() { printf "${YELLOW}[警告] %b${NC}\n" "$@"; }
+
+### === 信号捕获 === ###
+cleanup() {
+    log "INFO" "脚本被中断..."
+    echo -e "${YELLOW}[警告] 脚本已退出！${NC}"
+    exit $EXIT_INTERRUPT
+}
+trap cleanup SIGINT SIGTERM
+
+
 
 ### === 工具检查 === ###
 check_dependencies() {
@@ -16,18 +56,7 @@ check_dependencies() {
   done
 }
 
-### === 颜色与提示函数 === ###
-GREEN='\033[32m'
-RED='\033[31m'
-YELLOW='\033[33m'
-BLUE='\033[34m'
-BOLD='\033[1m'
-NC='\033[0m'
 
-info() { echo -e "${BLUE}[信息]${NC} $1"; }
-success() { echo -e "${GREEN}[成功]${NC} $1"; }
-warning() { echo -e "${YELLOW}[提示]${NC} $1"; }
-error() { echo -e "${RED}[错误]${NC} $1"; }
 
 ### === 变量定义 === ###
 SYSTEM=""
@@ -41,7 +70,8 @@ MODE=""
 ### === 系统选择 === ###
 select_system() {
   SYSTEMS=("ubuntu" "debian" "centos" "alpine" "kali" "almalinux" "rocky" "arch" "fedora" "opensuse" "oracle"
-            "windows" "dd" "alpine-live" "netboot.xyz")
+            "redhat" "anolis" "opencloudos" "almalinux" "nixos" "openeuler"
+             "windows" "dd" "alpine-live" "netboot.xyz")
 
   info "请选择安装模式或系统："
   select SYSTEM in "${SYSTEMS[@]}"; do
@@ -49,7 +79,7 @@ select_system() {
       success "已选择系统/模式：$SYSTEM"
       break
     else
-      warning "无效选择，请重试"
+      warn "无效选择，请重试"
     fi
   done
 }
@@ -57,15 +87,21 @@ select_system() {
 ### === 版本选择 === ###
 select_version() {
   declare -A VERSIONS
-  VERSIONS["ubuntu"]="24.10 24.04 22.04 20.04 18.04 16.04"
+  VERSIONS["ubuntu"]="25.04 24.04 22.04 20.04 18.04 16.04"
   VERSIONS["debian"]="12 11 10 9"
-  VERSIONS["centos"]="10 9 8 7"
+  VERSIONS["centos"]="10 9"
   VERSIONS["alpine"]="3.21 3.20 3.19 3.18"
-  VERSIONS["fedora"]="41 40 39"
+  VERSIONS["fedora"]="42 41"
   VERSIONS["opensuse"]="tumbleweed 15.6"
   VERSIONS["almalinux"]="9 8"
   VERSIONS["rocky"]="9 8"
   VERSIONS["oracle"]="9 8"
+  VERSIONS["redhat"]="9 8"
+  VERSIONS["anolis"]="23 8 7"
+  VERSIONS["opencloudos"]="23 9 8"
+  VERSIONS["almalinux"]="9 8"
+  VERSIONS["nixos"]="24.11"
+  VERSIONS["openeuler"]="25.03 24.03 22.03 20.03"
 
   if [[ -n "${VERSIONS[$SYSTEM]}" ]]; then
     info "请选择版本或手动输入："
@@ -80,7 +116,7 @@ select_version() {
         VERSION="$CHOICE"
         break
       else
-        warning "无效选择，请重试"
+        warn "无效选择，请重试"
       fi
     done
   else
@@ -90,7 +126,7 @@ select_version() {
 
 ### === 获取密码 === ###
 get_password() {
-  warning "请输入密码（留空则使用默认密码）:"
+  warn "请输入密码（留空则使用默认密码）:"
   read -rs PASSWORD
   echo
   if [[ -z "$PASSWORD" ]]; then
@@ -157,7 +193,7 @@ confirm_and_execute() {
     success "开始执行安装..."
     eval "$CMD"
   else
-    warning "已取消安装流程"
+    warn "已取消安装流程"
     exit 0
   fi
 }
