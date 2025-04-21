@@ -51,7 +51,7 @@ cd /tmp
 temp_dir=$(mktemp -d)
 curl -sLo - $temp_download_file "https://github.com/NodeSeekDev/NodeScriptKit/archive/refs/tags/$MENU_VERSION.tar.gz" | \
     tar -xzv -C $temp_dir
-cp $temp_dir/*/menu.toml /etc/nsk/config.toml
+[ -f "/etc/nsk/config.toml" ] || cp $temp_dir/*/menu.toml /etc/nsk/config.toml
 rm -rf /etc/nsk/modules.d/default/*  # Remove old scripts to prevent conflicts
 cp $temp_dir/*/modules.d/* /etc/nsk/modules.d/default/
 
@@ -60,5 +60,7 @@ echo $MENU_VERSION > /etc/nsk/version
 cp $temp_dir/*/nsk.sh /usr/bin/nsk
 chmod u+x /usr/bin/nsk
 [ -f "/usr/bin/n" ] || ln -s /usr/bin/nsk /usr/bin/n
+
+rm -rf $temp_dir
 
 echo -e "\e[1;32mnsk脚本安装成功啦，可以输入n或者nsk命令唤出菜单\e[0m"

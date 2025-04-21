@@ -7,7 +7,7 @@ if [ -n "$MENU_VERSION" ] && \
     echo "检测到有新版本可以更新，是否升级？[y/N]"
     read -r ans
     if [ "$ans" = "y" ] || [ "$ans" = "Y" ]; then
-        bash <(curl -Ls https://raw.githubusercontent.com/NodeSeekDev/NodeScriptKit/refs/heads/main/install.sh)
+        bash <(curl -Ls https://raw.githubusercontent.com/NodeSeekDev/NodeScriptKit/refs/heads/main/install.sh) && exit
     else
         echo "已取消升级"
     fi
