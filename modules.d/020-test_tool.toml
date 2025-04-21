@@ -5,9 +5,9 @@ node_quality = "bash <(curl -sL run.NodeQuality.com)"
 #融合怪测试
 fusion_test = "bash <(curl -sL bash.spiritlhl.net/ecs)"
 #IP质量
-ip_quality = "bash <(curl -sL IP.Check.Place)"
+ip_quality = "bash <(curl -sL Check.Place) -I" #IP质量，交互界面
 
-network_quality = "bash <(curl -sL Net.Check.Place)" #网络质量
+network_quality = "bash <(curl -sL Check.Place) -N" #网络质量，交互界面
 yabs = "bash <(curl -sL yabs.sh)" #yabs
 bench = "bash <(curl -sL bench.sh)" #benchmark
 super_bench = "bash <(curl -sL git.io/superbench.sh)" #superbench
