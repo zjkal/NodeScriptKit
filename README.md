@@ -75,6 +75,36 @@ script = "test"
 
 这些菜单id负责穿针引线，落叶归根到脚本id
 
+## 扩展/覆盖配置的方式
+NodeScriptKit支持合并配置文件且支持订阅远程配置，如果你是在本地调试，可以将新的配置文件放置到/etc/nsk/modules.d/extend/ 目录下，文件扩展名为toml
+
+如果分享给其他用户，可以放到GitHub上并分享为raw文件直链，接受分享的用户可以修改/etc/nsk/config.toml中[remote]/subscribes的配置文本
+下面给出一个示例配置，很容易看懂
+```
+[scripts]
+test1 = "echo test1"
+
+[[menus]]
+id = "main"
+title = "主菜单"
+sub_menus = [
+    "my-append", # 给主菜单补充新的入口
+]
+
+# 新的菜单入口
+[[menus]]
+id = "my-append"
+title = "补充菜单"
+sub_menus = [
+    "test1",
+]
+
+[[menus]]
+id = "test1"
+title = "打印 test1"
+script = "test1"
+```
+
 ## 代码提交规范和约定
 - 鼓励开发者通过pr贡献内容
 - 提交的内容主要包括菜单和脚本，菜单放到modules.d下，脚本放到shell_scripts下
