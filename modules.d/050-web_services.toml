@@ -1,0 +1,91 @@
+[scripts]
+# Nginx管理脚本
+nginx_install = "bash <(curl -sL 'https://raw.githubusercontent.com/NodeSeekDev/NodeScriptKit/main/shell_scripts/web_services/nginx_manager.sh') install"
+nginx_config = "bash <(curl -sL 'https://raw.githubusercontent.com/NodeSeekDev/NodeScriptKit/main/shell_scripts/web_services/nginx_manager.sh') config"
+nginx_optimize = "bash <(curl -sL 'https://raw.githubusercontent.com/NodeSeekDev/NodeScriptKit/main/shell_scripts/web_services/nginx_manager.sh') optimize"
+nginx_ssl = "bash <(curl -sL 'https://raw.githubusercontent.com/NodeSeekDev/NodeScriptKit/main/shell_scripts/web_services/nginx_manager.sh') ssl"
+
+# Apache管理脚本
+apache_install = "bash <(curl -sL 'https://raw.githubusercontent.com/NodeSeekDev/NodeScriptKit/main/shell_scripts/web_services/apache_manager.sh') install"
+apache_config = "bash <(curl -sL 'https://raw.githubusercontent.com/NodeSeekDev/NodeScriptKit/main/shell_scripts/web_services/apache_manager.sh') config"
+apache_optimize = "bash <(curl -sL 'https://raw.githubusercontent.com/NodeSeekDev/NodeScriptKit/main/shell_scripts/web_services/apache_manager.sh') optimize"
+
+# 反向代理配置脚本
+reverse_proxy_config = "bash <(curl -sL 'https://raw.githubusercontent.com/NodeSeekDev/NodeScriptKit/main/shell_scripts/web_services/reverse_proxy.sh')"
+
+# Let's Encrypt证书脚本
+letsencrypt_cert = "bash <(curl -sL 'https://raw.githubusercontent.com/NodeSeekDev/NodeScriptKit/main/shell_scripts/web_services/letsencrypt.sh')"
+
+[[menus]]
+id = "web_services"
+title = "Web服务管理"
+sub_menus = [
+    "nginx_management",
+    "apache_management",
+    "reverse_proxy_management",
+    "letsencrypt_management",
+]
+
+[[menus]]
+id = "nginx_management"
+title = "Nginx管理"
+sub_menus = [
+    "nginx_install",
+    "nginx_config",
+    "nginx_optimize",
+    "nginx_ssl",
+]
+
+[[menus]]
+id = "nginx_install"
+title = "安装Nginx"
+script = "nginx_install"
+
+[[menus]]
+id = "nginx_config"
+title = "配置Nginx"
+script = "nginx_config"
+
+[[menus]]
+id = "nginx_optimize"
+title = "优化Nginx"
+script = "nginx_optimize"
+
+[[menus]]
+id = "nginx_ssl"
+title = "配置SSL证书"
+script = "nginx_ssl"
+
+[[menus]]
+id = "apache_management"
+title = "Apache管理"
+sub_menus = [
+    "apache_install",
+    "apache_config",
+    "apache_optimize",
+]
+
+[[menus]]
+id = "apache_install"
+title = "安装Apache"
+script = "apache_install"
+
+[[menus]]
+id = "apache_config"
+title = "配置Apache"
+script = "apache_config"
+
+[[menus]]
+id = "apache_optimize"
+title = "优化Apache"
+script = "apache_optimize"
+
+[[menus]]
+id = "reverse_proxy_management"
+title = "反向代理配置"
+script = "reverse_proxy_config"
+
+[[menus]]
+id = "letsencrypt_management"
+title = "Let's Encrypt证书"
+script = "letsencrypt_cert"
